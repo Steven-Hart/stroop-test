@@ -46,11 +46,15 @@ namespace StroopTest
 
         #region Public Methods
 
+        /// <summary>
+        /// Generate new prompt word and color different to the previous
+        /// </summary>
         public void GenerateNewPrompt()
         {
             StroopColor[] values = (StroopColor[])Enum.GetValues(typeof(StroopColor));
             Random random = new Random();
 
+            // Pass in same random to not reset the random
             GetNewWord(values, random);
             GetNewColor(values, random);
 
@@ -69,18 +73,27 @@ namespace StroopTest
         #endregion
 
         #region Private Methods
+        
+        /// <summary>
+        /// Get new word excluding previous word
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="random"></param>
         private void GetNewWord(StroopColor[] values, Random random)
         {
-            // Exclude the previous word
             var unusableWords = new[] {_currentWord};
             var usableWords = values.Except(unusableWords).ToArray();
             var newWord = (StroopColor)usableWords.GetValue(random.Next(usableWords.Length));
             _currentWord = newWord;
         }
 
+        /// <summary>
+        /// Get new color excluding previous color and current word
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="random"></param>
         private void GetNewColor(StroopColor[] values, Random random)
         {
-            // Exclude the previous color and the current word
             var unusableWords = new[] {_currentColor, _currentWord};
             var usableWords = values.Except(unusableWords).ToArray();
             var newColor = (StroopColor)usableWords.GetValue(random.Next(usableWords.Length));

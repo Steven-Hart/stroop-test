@@ -60,6 +60,10 @@ public class StroopScore : MonoBehaviour
 
     #region Public Methods
 
+    /// <summary>
+    /// Add score to total and start next score
+    /// </summary>
+    /// <param name="isCorrect"></param>
     public void AddScore(bool isCorrect)
     {
         if (isCorrect)
@@ -101,6 +105,7 @@ public class StroopScore : MonoBehaviour
         timer += Time.deltaTime;
         int numberOfSeconds = 4;
         if ((timer < 1f)) return;
+        // Reduce score by fraction of total seconds allowed
         Score -= DEFAULT_SCORE/numberOfSeconds;
         timer = 0;
         if (Score > 0) return;

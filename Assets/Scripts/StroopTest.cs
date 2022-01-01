@@ -92,12 +92,18 @@ namespace StroopTest
             stroopScore.StartScoring();
         }
 
+        /// <summary>
+        /// Toggle end of game and show result screen
+        /// </summary>
         private void EndGame()
         {
             isPlaying = false;
             ShowResultScreen();
         }
 
+        /// <summary>
+        /// Reset and show game screen
+        /// </summary>
         private void Reset()
         {
             isPlaying = false;
@@ -116,7 +122,6 @@ namespace StroopTest
         {
             gameScreen.SetActive(false);
             resultScreen.SetActive(true);
-            
             stroopScore.OnEndOfGame();
         }
 
